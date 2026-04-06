@@ -1,42 +1,18 @@
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrainConsistManagementApp {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Print welcome message
+        System.out.println("=== Train Consist Management App ===");
 
-        // Regex patterns
-        String trainIdPattern = "TRN-\\d{4}";     // Train ID must be TRN- followed by exactly 4 digits
-        String cargoCodePattern = "PET-[A-Z]{2}"; // Cargo Code must be PET- followed by exactly 2 uppercase letters
+        // Initialize train consist as an empty list
+        List<String> trainConsist = new ArrayList<>();
 
-        // Compile patterns
-        Pattern trainPattern = Pattern.compile(trainIdPattern);
-        Pattern cargoPattern = Pattern.compile(cargoCodePattern);
+        // Display initial bogie count
+        System.out.println("Initial bogie count: " + trainConsist.size());
 
-        // User input
-        System.out.print("Enter Train ID: ");
-        String trainId = scanner.nextLine();
-
-        System.out.print("Enter Cargo Code: ");
-        String cargoCode = scanner.nextLine();
-
-        // Validate Train ID
-        Matcher trainMatcher = trainPattern.matcher(trainId);
-        if (trainMatcher.matches()) {
-            System.out.println("Valid Train ID: " + trainId);
-        } else {
-            System.out.println("Invalid Train ID format! Expected format: TRN-1234");
-        }
-
-        // Validate Cargo Code
-        Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
-        if (cargoMatcher.matches()) {
-            System.out.println("Valid Cargo Code: " + cargoCode);
-        } else {
-            System.out.println("Invalid Cargo Code format! Expected format: PET-AB");
-        }
-
-        scanner.close();
+        // Program continues...
+        System.out.println("Train initialized successfully. Ready for operations.");
     }
 }
