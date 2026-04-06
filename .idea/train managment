@@ -1,23 +1,47 @@
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+class Bogie {
+    private String name;
+    private int capacity;
+
+    // Constructor
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    // ToString for easy display
+    @Override
+    public String toString() {
+        return "Bogie: " + name + " | Capacity: " + capacity;
+    }
+}
 
 public class TrainConsistManagementApp {
     public static void main(String[] args) {
-        // Create a LinkedHashSet to store bogies in insertion order
-        Set<String> trainFormation = new LinkedHashSet<>();
+        // Create a list of passenger bogies
+        List<Bogie> passengerBogies = new ArrayList<>();
+        passengerBogies.add(new Bogie("Sleeper", 72));
+        passengerBogies.add(new Bogie("AC Chair", 56));
+        passengerBogies.add(new Bogie("First Class", 24));
 
-        // Attach bogies
-        trainFormation.add("Engine");
-        trainFormation.add("Sleeper");
-        trainFormation.add("Cargo");
-        trainFormation.add("Guard");
+        // Sort bogies by capacity using Comparator
+        passengerBogies.sort(Comparator.comparingInt(Bogie::getCapacity));
 
-        // Attempt to attach a duplicate bogie
-        trainFormation.add("Sleeper"); // This will be ignored automatically
-
-        // Display the final formation order
-        System.out.println("Train Formation (Insertion Order Preserved, No Duplicates):");
-        for (String bogie : trainFormation) {
+        // Display sorted bogies
+        System.out.println("Passenger Bogies Sorted by Capacity:");
+        for (Bogie bogie : passengerBogies) {
             System.out.println(bogie);
         }
     }
